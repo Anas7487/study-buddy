@@ -13,27 +13,26 @@ function joinRoom() {
     }
 }
 
-room.addEventListener("click", () => {joinRoom()});
+room.addEventListener("click", () => { joinRoom() });
 
 function createRoom() {
-    const newroom = newroom.id;
+    const newroom = add.id;
     if (newroom) {
         currentRoom = newroom;
         socket.emit("newroom", newroom);
 
-            socket.on("newroom", (newroom) => {
+        socket.on("newroom", (newroom) => {
 
-        const room_box = document.getElementById("room-box");
-        const box = room_box.createElement("button", { id: newroom, value: newroom  });
-
-        box.appendChild(room_box);
+            const room_box = document.getElementById("room-box");
+            const box = room_box.createElement("button");
+            box.id = newroom;
+            box.textContent = newroom;
+            box.appendChild(room_box);
+        });
     };
 };
 
-newroom.addEventListener("click", () => {createRoom()});    
-
-
-
+newroom.addEventListener("click", () => { createRoom() });
 
 function sendMessage() {
     const message = document.getElementById("message").value;
